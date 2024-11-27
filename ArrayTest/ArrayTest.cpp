@@ -3,26 +3,137 @@
 
 #include <iostream>
 #include <array>
+#include <vector>
 
 using namespace std;
 
-//동적 메모리 할당 예제
+//2행 3열 원소의 합을 구하라
+//c++ vector 2차원 배열 활용
 int main()
 {
-	//동적 메모리 할당 초기화 안하면 쓰레기 값 설정이 됨 초기화 꼭!
-	int* ptr = new int[3] {};
-	ptr[0] = 10;
-	ptr[1] = 20;
+	//2차원 배열 선언 및 초기화
+	vector<vector<int>> mat1(2, vector<int>(3,0));
 
-	for (int i = 0; i< 3; i++)
+	vector<vector<int>> mat2{
+		{1,2,3},
+		{4,5,6}
+	};
+	
+	for (int r = 0; r < mat2.size(); r++)
 	{
-		cout << ptr[i] << endl;
+		for (int c = 0; c < mat2[r].size(); c++)
+		{
+			cout << mat2[r][c] << " ";
+		}
+		cout << endl;
 	}
-
-	//동적 메모리 해제
-	delete[] ptr;
-	ptr = nullptr;
 }
+
+//2행 3열 원소의 합을 구하라
+//c언어 2차원 배열
+//int main()
+//{
+//	int mat[2][3] = {
+//		{1,2,3},
+//		{4,5,6}
+//	};
+//
+//	int sum = 0;
+//	for (int r = 0; r < 2; r++)
+//	{
+//		for (int c = 0; c < 3; c++)
+//		{
+//			sum += mat[r][c];
+//		}
+//	}
+//	cout << "Sum: " << sum << endl;
+//}
+
+//가변형 배열 vector 활용
+//int main()
+//{
+//	vector<int> v1;
+//	v1.push_back(10);
+//	v1.push_back(20);
+//	v1.push_back(30);
+//
+//	vector<int> v2(10);	//0으로 초기화된 10개의 int 방 생성
+//	vector<int> v3(10, 1);	//1로 초기화된 10개의 int 방 생성
+//	vector<int> v4{ 10,20,30,40,50 };
+//
+//	vector<int> v5(v4);
+//	vector<int> v6(v4.begin(), v4.begin() + 3);
+//
+//	for (int i = 0; i < v6.size(); i++)
+//	{
+//		cout << v6[i] << endl;
+//	}
+//}
+
+
+//동적 메모리를 관리하는 클래스
+//template <typename T>
+//class DynamicArray
+//{
+//private:
+//	unsigned int sz;
+//	T* arr;
+//
+//public:
+//	//생성자 : 매개변수를 크기를 입력받아 동적 메모리 할당
+//	DynamicArray(int n) : sz(n)
+//	{
+//		arr = new T[sz] {};
+//
+//	}
+//	//소멸자 : 할당된 메모리를 해제
+//	~DynamicArray()
+//	{
+//		delete[] arr;
+//
+//		cout << "동적 메모리 해제" << endl;
+//	}
+//
+//	unsigned int size()
+//	{
+//		return sz;
+//	}
+//	T& operator[] (const int i) { return arr[i];}
+//};
+//
+//int main()
+//{
+//	DynamicArray<int> dn(5);
+//	dn[0] = 10;
+//	dn[1] = 20;
+//	dn[2] = 30;
+//	dn[3] = 40;
+//	dn[4] = 50;
+//
+//	for (int i = 0; i < dn.size(); i++)
+//	{
+//		cout << dn[i] << endl;
+//	}
+//}
+
+
+//동적 메모리 할당 예제
+//int main()
+//{
+//	//동적 메모리 할당 초기화 안하면 쓰레기 값 설정이 됨 초기화 꼭!
+//	int* ptr = new int[3] {};
+//	ptr[0] = 10;
+//	ptr[1] = 20;
+//
+//	for (int i = 0; i< 3; i++)
+//	{
+//		cout << ptr[i] << endl;
+//	}
+//
+//	//동적 메모리 해제
+//	delete[] ptr;
+//	ptr = nullptr;
+//}
 
 //c++언어 배열 구현 - 점수들의 평균을 구하라
 //int main()
@@ -42,7 +153,6 @@ int main()
 //	//출력
 //	cout << "acerage Score: " << avg << endl;
 //}
-
 
 //c언어 배열 구현 - 점수들의 평균을 구하라
 //int main()
@@ -66,8 +176,7 @@ int main()
 //	//출력
 //	cout << "acerage Score: " << avg << endl;
 //}
-
-
+// 
 //int main()
 //{
 //    std::cout << "Hello Array!\n";
